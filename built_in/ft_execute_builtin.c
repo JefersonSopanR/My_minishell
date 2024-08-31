@@ -29,7 +29,7 @@ bool	ft_is_builtin(char *command)
 	return (false);
 }
 
-int	ft_execute_builtin(t_node *node, t_global *minishell)
+int	ft_execute_builtin(t_node *node, t_global *minishell, bool in_pipe)
 {
 	int		exit_status;
 	char	**cmd;
@@ -37,7 +37,7 @@ int	ft_execute_builtin(t_node *node, t_global *minishell)
 	cmd = ft_split(node->data, ' ');
 	exit_status = ft_check_redirections(node->redir);
 	if (exit_status)
-		return (ft_reset_shell(cmd, minishell), exit_status);
+		return (ft_reset_shell(cmd, minishell, in_pipe), exit_status);
 	if (!ft_strcmp("echo", cmd[0]))
 		return (ft_echo(cmd, minishell));
 	else if (!ft_strcmp("cd", cmd[0]))
@@ -57,8 +57,8 @@ int	ft_execute_builtin(t_node *node, t_global *minishell)
 	return (1);
 }
 
-void	ft_reset_shell(char **cmd, t_global *minishell)
+void	ft_reset_shell(char **cmd, t_global *minishell, bool in_pipe)
 {
 	free_split(cmd);
-	ft_reset_fd(minishell);
+	ft_reset_fd(minishell, in_pipe);
 }

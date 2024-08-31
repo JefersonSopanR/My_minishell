@@ -55,7 +55,7 @@ int	ft_readline(t_global *minishell)
 void	ft_procces_ast(t_global *minishell)
 {
 	ft_print_ast(minishell->ast, 0);
-	minishell->exit_status = ft_start_execution(minishell->ast, minishell);
+	minishell->exit_status = ft_start_execution(minishell->ast, minishell, false);
 	ft_free_tokens(&minishell->token);
 	ft_free_ast(minishell->ast);
 }

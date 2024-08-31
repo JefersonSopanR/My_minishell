@@ -100,11 +100,12 @@ typedef struct s_global
 	int			i;
 }	t_global;
 
+
+int			ft_get_exit_status(int status);
 //init
 
 void		ft_procces_ast(t_global *minishell);
 void		ft_init_minishell(char **env, t_global *minishell);
-void		ft_reset_fd(t_global *minishell);
 int			ft_readline(t_global *minishell);
 
 //TOKENIZATION
@@ -165,18 +166,18 @@ void		child_get_input(char *delimeter, int pfd[]);
 int			ft_redir_append(char	*file);
 int			ft_redir_out(char	*file);
 int			ft_redir_in(char	*file);
-int			ft_execute_command(t_node *node, t_global *minishell);
+int			ft_execute_command(t_node *node, t_global *minishell, bool in_pipe);
 int			ft_execute_normal_cmd(t_node *node, t_global *minishell);
 int			ft_check_redirections(t_redir	*redirect);
 void		ft_child_process(t_node *node, char **envp, t_global *minishell);
-int			ft_start_execution(t_node *ast, t_global *minishell);
-void		ft_reset_fd(t_global *minishell);
+int			ft_start_execution(t_node *ast, t_global *minishell, bool in_pipe);
+void		ft_reset_fd(t_global *minishell, bool in_pipe);
 void		ft_erro_pipe(void);
 
 //BUILTINS
 
-void		ft_reset_shell(char **cmd, t_global *minishell);
-int			ft_execute_builtin(t_node *node, t_global *minishell);
+void		ft_reset_shell(char **cmd, t_global *minishell, bool in_pipe);
+int			ft_execute_builtin(t_node *node, t_global *minishell, bool in_pipe);
 bool		ft_is_builtin(char *command);
 int			ft_cd(char **cmd, t_global *minishell);
 void		ft_cd_error(char *path);
