@@ -20,7 +20,7 @@ CREATION_AST = $(addprefix $(CREATION_AST_DIR), \
 
 BUTCHER = $(addprefix $(BUTCHER_DIR), \
 	  execute_command.c setup_files.c\
-	  start_execution.c help_set_files.c)
+	  start_execution.c help_set_files.c ft_handle_cmd_quotes.c)
 
 BUILT_IN = $(addprefix $(BUILT_IN_DIR), ft_execute_builtin.c\
 	  ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_pwd.c ft_unset.c utils_built_ins.c ft_expr.c\

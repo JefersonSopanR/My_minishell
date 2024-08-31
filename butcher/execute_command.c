@@ -67,7 +67,10 @@ void	execute_command(char *command, char **envp, t_global *minishell)
 	path = NULL;
 	if (command == NULL || command[0] == '\0')
 		return ;
-	split_command = ft_split(command, ' ');
+	if (ft_strchr(command, '\''))
+		split_command = ft_handle_cmd_quotes(command);
+	else
+		split_command = ft_split(command, ' ');
 	if (ft_strnstr(split_command[0], "/", ft_strlen(split_command[0])))
 	{
 		if (access(split_command[0], F_OK | X_OK) == 0)

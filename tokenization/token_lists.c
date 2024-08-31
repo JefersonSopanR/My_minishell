@@ -46,7 +46,7 @@ bool	ft_check_awk(t_token **token)
 	tok = (*token);
 	while (tok)
 	{
-		if (!ft_strcmp("awk", tok->data))
+		if (!ft_strcmp("awk", tok->data) && !tok->next)
 			return (true);
 		tok = tok->next;
 	}
@@ -64,9 +64,12 @@ void	ft_append_awk_arg(t_token **token, char *line, int *i)
 	(*i)++;
 	while (line[*i] && line[*i] != '\'')
 		(*i)++;
-	data = ft_substr(line, start, (*i));
-	if (!data)
+	if (line[*i] != '\'')
 		return ;
 	(*i)++;
+	data = ft_substr(line, start, (*i) - start);
+	printf("data: %s1\n", data);
+	if (!data)
+		return ;
 	ft_add_back(token, ft_new_token(T_WORD, data));
 }

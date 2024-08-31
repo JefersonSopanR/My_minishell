@@ -173,6 +173,7 @@ void		ft_child_process(t_node *node, char **envp, t_global *minishell);
 int			ft_start_execution(t_node *ast, t_global *minishell, bool in_pipe);
 void		ft_reset_fd(t_global *minishell, bool in_pipe);
 void		ft_erro_pipe(void);
+char		**ft_handle_cmd_quotes(char	*command);
 
 //BUILTINS
 
