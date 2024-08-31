@@ -93,5 +93,5 @@ void	ft_command_not_found(char **split_command)
 	write(2, split_command[0], ft_strlen(split_command[0]));
 	write(2, "\n", 1);
 	free_split(split_command);
-	exit(EXIT_FAILURE);
+	exit(127);
 }

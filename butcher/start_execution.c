@@ -14,9 +14,9 @@
 
 int	ft_get_exit_status(int status)
 {
-	if (WIFSIGNALED(status))
-		return (128 + WTERMSIG(status));
-	return (WEXITSTATUS(status));
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (0);
 }
 
 void	ft_child_pipe(t_node *ast, int pfd[], bool is_left, t_global *minishell)
@@ -148,7 +148,6 @@ int	ft_execute_command(t_node *node, t_global *minishell, bool in_pipe)
 	else
 	{
 		exit_status = ft_execute_normal_cmd(node, minishell);
-		ft_get_exit_status(exit_status);
 		return (ft_get_exit_status(exit_status));
 	}
 	return (0);
