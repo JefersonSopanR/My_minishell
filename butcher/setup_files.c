@@ -16,7 +16,6 @@ int	ft_redir_in(char	*file)
 {
 	int	infile_fd;
 
-	ft_putstr_fd(file, 1);
 	infile_fd = open(file, O_RDONLY);
 	if (infile_fd == -1)
 	{
