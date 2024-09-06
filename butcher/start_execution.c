@@ -14,7 +14,11 @@
 
 int	ft_get_exit_status(int status)
 {
-	if (WIFEXITED(status))
+	if (status == 512)
+		return (127);
+	if (WIFSIGNALED(status))
+		return (WTERMSIG(status) + 128);
+	else if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	return (0);
 }
